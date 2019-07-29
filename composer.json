@@ -1,6 +1,6 @@
 {
     "name": "dominicwatts/plusminusquantity",
-    "description": "",
+    "description": "Plus and Minus quantity on product page and minicart",
     "type": "magento2-module",
     "license": "proprietary",
     "version": "1.0.0",
