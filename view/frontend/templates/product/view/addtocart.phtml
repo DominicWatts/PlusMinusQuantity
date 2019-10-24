@@ -1,28 +1,26 @@
 <?php
 /** @var $block \Magento\Catalog\Block\Product\View */
+// phpcs:disable Magento2.Files.LineLength.MaxExceeded
 ?>
 <?php $_product = $block->getProduct(); ?>
 <?php $buttonTitle = __('Add to Cart'); ?>
-<?php if ($_product->isSaleable()): ?>
+<?php if ($_product->isSaleable()) : ?>
     <div class="box-tocart">
         <div class="fieldset">
-            <?php if ($block->shouldRenderQuantity()): ?>
+            <?php if ($block->shouldRenderQuantity()) : ?>
                 <div class="field qty">
-                    <label class="label" for="qty"><span><?php /* @escapeNotVerified */
-                            echo __('Qty') ?></span></label>
+                    <label class="label" for="qty"><span><?= $block->escapeHtml(__('Qty')) ?></span></label>
                     <div class="control">
-                        <span class="minus"><button type="button" title="<?= __('Reduce the quantity'); ?>">-</button></span>
+                        <span class="minus"><button type="button" title="<?= $block->escapeHtmlAttr(__('Reduce the quantity')); ?>">-</button></span>
                         <input type="number"
                                 name="qty"
                                 id="qty"
                                 maxlength="12"
-                                value="<?php /* @escapeNotVerified */
-                                echo $block->getProductDefaultQty() * 1 ?>"
-                                title="<?php /* @escapeNotVerified */
-                                echo __('Qty') ?>" class="input-text qty"
-                                data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                                value="<?= $block->escapeHtmlAttr($block->getProductDefaultQty() * 1) ?>"
+                                title="<?= $block->escapeHtmlAttr(__('Qty')) ?>" class="input-text qty"
+                                data-validate="<?= $block->escapeHtmlAttr(json_encode($block->getQuantityValidators())) ?>"
                         />
-                        <span class="plus"><button type="button" title="<?= __('Increase the quantity'); ?>"/>+</button></span>
+                        <span class="plus"><button type="button" title="<?= $block->escapeHtmlAttr(__('Increase the quantity')); ?>"/>+</button></span>
                         <script type="text/javascript">
                             // This is the javascript codes help us to increase and decrease qty
                             require(['jquery'], function ($) {
@@ -51,14 +49,12 @@
             <?php endif; ?>
             <div class="actions">
                 <button type="submit"
-                        title="<?php /* @escapeNotVerified */
-                        echo $buttonTitle ?>"
+                        title="<?= $block->escapeHtmlAttr($buttonTitle) ?>"
                         class="action primary tocart"
                         id="product-addtocart-button">
-                    <span><?php /* @escapeNotVerified */
-                        echo $buttonTitle ?></span>
+                    <span><?= $block->escapeHtml($buttonTitle) ?></span>
                 </button>
-                <?php echo $block->getChildHtml('', true) ?>
+                <?= $block->escapeHtml($block->getChildHtml('', true)) ?>
             </div>
         </div>
     </div>
@@ -72,7 +68,6 @@
             }
         }
     }
-
     </script>
 <?php else : ?>
     <script type="text/x-magento-init">
@@ -81,7 +76,5 @@
             "Magento_Catalog/js/validate-product": {}
         }
     }
-
-
     </script>
 <?php endif; ?>
